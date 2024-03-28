@@ -11259,13 +11259,11 @@ body.template-color-1 {
 .logo a {
   display: inline-block;
 }
+
 .logo a img {
   transition: 0.3s;
 }
 
-.logo-text{
-  display: inline-block;
-}
 @media only screen and (max-width: 767px) {
   .logo a img {
     max-height: 54px;
