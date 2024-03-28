@@ -16268,16 +16268,28 @@ span.sr-only {
   border-radius: 10px;
   background-color: #212428;
   height: 100%;
+  position: relative;
+  top: 50%;
+  left: 123%;
+  transform: translate(-50%, -50%);
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .contact-about-area {
     height: auto;
+    position: relative;
+    top: 50%;
+    left: 125%;
+    transform: translate(-50%, -50%);
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .contact-about-area {
     margin-bottom: 50px;
     height: auto;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 @media only screen and (max-width: 767px) {
@@ -16285,6 +16297,10 @@ span.sr-only {
     margin-bottom: 0;
     padding: 50px 20px;
     height: auto;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 .contact-about-area .thumbnail {
@@ -16407,6 +16423,7 @@ span.sr-only {
   transform: scale(1.1);
 }
 
+/*
 .contact-form-wrapper {
   box-shadow: var(--shadow-1);
   padding: 30px;
@@ -16542,7 +16559,7 @@ span.sr-only {
     text-align: center;
   }
 }
-
+*/
 .error-msg {
   margin-top: 20px;
   background: rgba(255, 0, 3, 0.1215686275);
