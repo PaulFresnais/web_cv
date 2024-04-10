@@ -1,8 +1,18 @@
 <?php
+
+require 'vendor/autoload.php';
+use Symfony\Component\Dotenv\Dotenv;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+$dotenv = new Dotenv();
+$dotenv->load(__DIR__ . '/.env');
+
 $name = trim($_POST['contact-name']);
 $phone = trim($_POST['contact-phone']);
 $email = trim($_POST['contact-email']);
 $message = trim($_POST['contact-message']);
+
 if ($name == "") {
     $msg['err'] = "\n Name can not be empty!";
     $msg['field'] = "contact-name";
@@ -40,8 +50,43 @@ if ($name == "") {
     $headers = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
     $headers .= 'From:  inbio <contact@example.com>' . "\r\n";
-    mail($to, $subject, $_message, $headers, '-f paul.fresnais@gmail.com');
 
+    $mail = new PHPMailer(true);
+
+    try {
+        //Server settings
+        $mail->SMTPDebug = 3;                      //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host = 'smtp-mail.outlook.com';                     //Set the SMTP server to send through //'ssl0.ovh.net'
+        $mail->SMTPAuth = true;                                   //Enable SMTP authentication
+        $mail->Username = $_ENV["EMAIL"];
+        $mail->Password = $_ENV["PASSWORD"];                               //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
+        $mail->Port = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+        //Recipients
+        $mail->setFrom($email);
+        $mail->addAddress("paul.fresnais@outlook.fr");     //Add a recipient
+        //$mail->addAddress('ellen@example.com');               //Name is optional
+        //$mail->addReplyTo('info@example.com', 'Information');
+        //$mail->addCC('cc@example.com');
+        //$mail->addBCC('bcc@example.com');
+
+        //Attachments
+        //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+        //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = $subjects;
+        //$mail->Body = $message;
+        $mail->Body = $message . " " . $email . " " . $phone;
+
+        $mail->send();
+        echo 'Message has been sent';
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
     $msg['success'] = "\n Email has been sent successfully.";
     $msg['code'] = TRUE;
 }
