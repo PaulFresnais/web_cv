@@ -13,6 +13,11 @@ $phone = trim($_POST['contact-phone']);
 $email = trim($_POST['contact-email']);
 $message = trim($_POST['contact-message']);
 
+$name = "Test";
+$phone = "0000000000";
+$email = "paul.fresnais@outlook.fr";
+$message = "test";
+
 if ($name == "") {
     $msg['err'] = "\n Name can not be empty!";
     $msg['field'] = "contact-name";
@@ -55,7 +60,7 @@ if ($name == "") {
 
     try {
         //Server settings
-        $mail->SMTPDebug = 0;                      //Enable verbose debug output
+        $mail->SMTPDebug = 3;                      //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host = 'smtp-mail.outlook.com';                     //Set the SMTP server to send through //'ssl0.ovh.net'
         $mail->SMTPAuth = true;                                   //Enable SMTP authentication
