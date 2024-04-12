@@ -55,7 +55,7 @@ if ($name == "") {
 
     try {
         //Server settings
-        $mail->SMTPDebug = 3;                      //Enable verbose debug output
+        $mail->SMTPDebug = 0;                      //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host = 'smtp-mail.outlook.com';                     //Set the SMTP server to send through //'ssl0.ovh.net'
         $mail->SMTPAuth = true;                                   //Enable SMTP authentication
