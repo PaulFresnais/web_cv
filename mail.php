@@ -67,14 +67,6 @@ if ($name == "") {
         //Recipients
         $mail->setFrom($email);
         $mail->addAddress("paul.fresnais@outlook.fr");     //Add a recipient
-        //$mail->addAddress('ellen@example.com');               //Name is optional
-        //$mail->addReplyTo('info@example.com', 'Information');
-        //$mail->addCC('cc@example.com');
-        //$mail->addBCC('bcc@example.com');
-
-        //Attachments
-        //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
@@ -84,10 +76,11 @@ if ($name == "") {
 
         $mail->send();
         echo 'Message has been sent';
+        $msg['success'] = "\n Email has been sent successfully.";
+        $msg['code'] = true;
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        $msg['success'] = "\n Message could not be sent. Mailer Error";
+        $msg['code'] = false;
     }
-    $msg['success'] = "\n Email has been sent successfully.";
-    $msg['code'] = TRUE;
 }
 echo json_encode($msg);
