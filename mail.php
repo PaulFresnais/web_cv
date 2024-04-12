@@ -81,6 +81,7 @@ if ($name == "") {
     } catch (Exception $e) {
         $msg['success'] = "\n Message could not be sent. Mailer Error";
         $msg['code'] = false;
+        $msg['error'] = $e;
     }
 }
 echo json_encode($msg);
