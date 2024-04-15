@@ -61,7 +61,7 @@
 				var __selector = _self.closest('input,textarea');
 				_self.closest('div').find('input,textarea').removeAttr('style');
 				_self.find('.error-msg').remove();
-				_self.closest('div').find('button[type="submit"]').attr('disabled', 'disabled');
+				//_self.closest('div').find('button[type="submit"]').attr('disabled', 'disabled');
 				var data = $(this).serialize();
 				$.ajax({
 					url: 'mail.php',
@@ -427,7 +427,6 @@
                 filter: ':not(.external)',
                 easing: 'swing',
                 scrollChange: function($currentListItem) {
-                    console.log(this);
                 }
             });
         },
